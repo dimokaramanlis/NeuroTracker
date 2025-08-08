@@ -24,7 +24,10 @@ for ii = 1:numel(dpfile)
     metapath   = dir(fullfile(fpath, '*.ap.meta'));
     res(ii) = SGLXMetaToCoords(fullfile(metapath.folder,metapath.name));
 end
-assert(isequal(res(:).xcoords) & isequal(res(:).ycoords), "Shanks don't match!!!")
+
+if numel(dpfile) > 1
+    assert(isequal(res(:).xcoords) & isequal(res(:).ycoords), "Shanks don't match!!!")
+end
 %-----------------------------------------------------------------------------
 [fpath, ~] = fileparts(dpfile{1});
 metapath   = dir(fullfile(fpath, '*.ap.meta'));
